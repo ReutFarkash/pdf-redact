@@ -10,7 +10,7 @@ HOW TO RUN THIS SCRIPT
 
 Open a terminal, go to the pdf-redact folder, and run:
 
-    .venv/bin/python redact.py your-document.pdf [options]
+    .venv/bin/python3 redact.py your-document.pdf [options]
 
 The redacted file is saved automatically in the same folder as:
     your-document_redacted_20240101_120000.pdf
@@ -18,7 +18,7 @@ The redacted file is saved automatically in the same folder as:
 The original is never modified. To choose your own output name,
 add it as the second argument:
 
-    .venv/bin/python redact.py input.pdf output.pdf [options]
+    .venv/bin/python3 redact.py input.pdf output.pdf [options]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 IMPORTANT: REPEATING FLAGS
@@ -36,11 +36,11 @@ EXAMPLES
 
 Redact a name and all common patterns (emails, phone numbers, IDs, etc.):
 
-    .venv/bin/python redact.py letter.pdf --name "Jane Smith" --all
+    .venv/bin/python3 redact.py letter.pdf --name "Jane Smith" --all
 
 Redact multiple variants of a name — use --name once per variant:
 
-    .venv/bin/python redact.py letter.pdf \\
+    .venv/bin/python3 redact.py letter.pdf \\
         --name "Jane Smith" \\
         --name "J. Smith" \\
         --name "Smith"
@@ -48,11 +48,11 @@ Redact multiple variants of a name — use --name once per variant:
 Redact the value that appears under a label in a document
 (works for both "Label: value" on one line and "Label" / value on separate lines):
 
-    .venv/bin/python redact.py document.pdf --after-header "Burgerservicenummer"
+    .venv/bin/python3 redact.py document.pdf --after-header "Burgerservicenummer"
 
 Redact values under multiple headers — use --after-header once per header:
 
-    .venv/bin/python redact.py document.pdf \\
+    .venv/bin/python3 redact.py document.pdf \\
         --after-header "Burgerservicenummer" \\
         --after-header "IBAN" \\
         --after-header "Betaalkenmerk"
@@ -63,17 +63,17 @@ x1,y1 is the top-left corner; x2,y2 is the bottom-right corner.
 In Preview on Mac: Tools > Show Inspector, then hover over the area.
 Coordinates start from the top-left of the page.):
 
-    .venv/bin/python redact.py document.pdf --region "50,100,300,130"
+    .venv/bin/python3 redact.py document.pdf --region "50,100,300,130"
 
 Redact multiple regions — use --region once per region:
 
-    .venv/bin/python redact.py document.pdf \\
+    .venv/bin/python3 redact.py document.pdf \\
         --region "50,100,300,130" \\
         --region "50,200,400,220"
 
 Redact names, addresses, and financial amounts together:
 
-    .venv/bin/python redact.py payslip.pdf \\
+    .venv/bin/python3 redact.py payslip.pdf \\
         --name "Jane Smith" \\
         --text "Kerkstraat 12" \\
         --text "1234 AB Amsterdam" \\
@@ -81,7 +81,7 @@ Redact names, addresses, and financial amounts together:
 
 Redact an Israeli document:
 
-    .venv/bin/python redact.py tofes.pdf \\
+    .venv/bin/python3 redact.py tofes.pdf \\
         --name "ישראל ישראלי" \\
         --name "ישראלי" \\
         --israeli \\
@@ -89,7 +89,7 @@ Redact an Israeli document:
 
 Combine everything — names, headers, a specific region, and pattern categories:
 
-    .venv/bin/python redact.py invoice.pdf \\
+    .venv/bin/python3 redact.py invoice.pdf \\
         --name "Jane Smith" \\
         --after-header "Account number" \\
         --region "50,400,300,420" \\
@@ -107,7 +107,7 @@ from pathlib import Path
 try:
     import fitz
 except ImportError:
-    print("Error: pymupdf is not installed. Run: pip install pymupdf", file=sys.stderr)
+    print("Error: pymupdf is not installed. Run: pip3 install pymupdf", file=sys.stderr)
     sys.exit(1)
 
 

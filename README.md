@@ -7,13 +7,13 @@ Redact personal information from a PDF. Metadata is always stripped.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install pymupdf
+pip3 install -r requirements.txt
 ```
 
 ## How to run
 
 ```bash
-.venv/bin/python redact.py your-document.pdf [options]
+.venv/bin/python3 redact.py your-document.pdf [options]
 ```
 
 The redacted file is saved automatically as `your-document_redacted_TIMESTAMP.pdf`
@@ -22,7 +22,7 @@ in the same folder. The original is never modified.
 To choose your own output filename, add it as the second argument:
 
 ```bash
-.venv/bin/python redact.py input.pdf clean-version.pdf [options]
+.venv/bin/python3 redact.py input.pdf clean-version.pdf [options]
 ```
 
 ## Important: repeating flags
@@ -66,12 +66,12 @@ written **once per value**. You cannot list multiple values after one flag.
 
 **Redact a name and all common patterns:**
 ```bash
-.venv/bin/python redact.py letter.pdf --name "Jane Smith" --all
+.venv/bin/python3 redact.py letter.pdf --name "Jane Smith" --all
 ```
 
 **Redact multiple name variants** (use `--name` once per variant):
 ```bash
-.venv/bin/python redact.py letter.pdf \
+.venv/bin/python3 redact.py letter.pdf \
     --name "Jane Smith" \
     --name "J. Smith" \
     --name "Smith"
@@ -79,12 +79,12 @@ written **once per value**. You cannot list multiple values after one flag.
 
 **Redact the value under a label** (works for both same-line and next-line layouts):
 ```bash
-.venv/bin/python redact.py document.pdf --after-header "Burgerservicenummer"
+.venv/bin/python3 redact.py document.pdf --after-header "Burgerservicenummer"
 ```
 
 **Redact values under multiple labels** (use `--after-header` once per label):
 ```bash
-.venv/bin/python redact.py document.pdf \
+.venv/bin/python3 redact.py document.pdf \
     --after-header "Burgerservicenummer" \
     --after-header "IBAN" \
     --after-header "Betaalkenmerk"
@@ -94,19 +94,19 @@ written **once per value**. You cannot list multiple values after one flag.
 Open the PDF in Preview on Mac (Tools → Show Inspector) to find coordinates.
 `x1,y1` is the top-left corner of the area, `x2,y2` is the bottom-right:
 ```bash
-.venv/bin/python redact.py document.pdf --region "50,100,300,130"
+.venv/bin/python3 redact.py document.pdf --region "50,100,300,130"
 ```
 
 **Redact multiple regions** (use `--region` once per region):
 ```bash
-.venv/bin/python redact.py document.pdf \
+.venv/bin/python3 redact.py document.pdf \
     --region "50,100,300,130" \
     --region "50,200,400,220"
 ```
 
 **Redact names, an address, and financial amounts together:**
 ```bash
-.venv/bin/python redact.py payslip.pdf \
+.venv/bin/python3 redact.py payslip.pdf \
     --name "Jane Smith" \
     --text "Kerkstraat 12" \
     --text "1234 AB Amsterdam" \
@@ -115,7 +115,7 @@ Open the PDF in Preview on Mac (Tools → Show Inspector) to find coordinates.
 
 **Israeli document:**
 ```bash
-.venv/bin/python redact.py tofes.pdf \
+.venv/bin/python3 redact.py tofes.pdf \
     --name "ישראל ישראלי" \
     --name "ישראלי" \
     --israeli \
@@ -124,7 +124,7 @@ Open the PDF in Preview on Mac (Tools → Show Inspector) to find coordinates.
 
 **Combine everything:**
 ```bash
-.venv/bin/python redact.py invoice.pdf \
+.venv/bin/python3 redact.py invoice.pdf \
     --name "Jane Smith" \
     --after-header "Account number" \
     --region "50,400,300,420" \
