@@ -2,6 +2,30 @@
 
 Redact personal information from a PDF. Metadata is always stripped.
 
+## Before and after
+
+| Before | After |
+|---|---|
+| ![Before redaction](docs/before.png) | ![After redaction](docs/after.png) |
+
+The example above uses `docs/sample.pdf` — a fake Dutch payment specification
+generated from `docs/make_sample.py`. The command that produced the redacted
+version:
+
+```bash
+.venv/bin/python3 redact.py docs/sample.pdf docs/sample_redacted.pdf \
+    --name "Jan de Vries" \
+    --name "de Vries" \
+    --ids --iban --phones --emails --postcodes --financial \
+    --after-header "Burgerservicenummer (BSN)" \
+    --after-header "IBAN" \
+    --after-header "E-mailadres" \
+    --after-header "Telefoonnummer" \
+    --after-header "Uitbetaling op rekeningnummer:"
+```
+
+---
+
 ## Install
 
 ```bash
@@ -25,6 +49,8 @@ To choose your own output filename, add it as the second argument:
 .venv/bin/python3 redact.py input.pdf clean-version.pdf [options]
 ```
 
+---
+
 ## Important: repeating flags
 
 Flags like `--name`, `--text`, `--after-header`, and `--region` must be
@@ -37,6 +63,8 @@ written **once per value**. You cannot list multiple values after one flag.
 # Wrong — only the first name would be used:
 --name "Jane Smith" "J. Smith" "Smith"
 ```
+
+---
 
 ## Options
 
@@ -61,6 +89,8 @@ written **once per value**. You cannot list multiple values after one flag.
 | `--israeli` | Israeli phone format (05X-XXX-XXXX) and 9-digit IDs |
 | `--financial` | Currency amounts (anything with €, $, £, or ₪) |
 | `--all` | All categories above |
+
+---
 
 ## Examples
 
@@ -131,6 +161,8 @@ Open the PDF in Preview on Mac (Tools → Show Inspector) to find coordinates.
     --emails \
     --financial
 ```
+
+---
 
 ## Note
 
